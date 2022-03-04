@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+
+    <body>
+        
+        <div class="outer-wrapper">
+            <div id="user-nav">
+                <img src="icon.png" alt="profile image" width="25">
+                <a href="#">main</a>
+                <a href="#">saved links</a>
+                <a href="#">notes</a>
+                <img src="settings-icon.svg" alt="settings" width="25" id="settings-icon">
+            </div>
+            <div id="color-wrapper">
+                <h3>Brand Colors</h3>
+                
+                <ul id="color-list">
+                    <span id="add-color" class="hover-effect"></span>
+                </ul>
+          
+            </div>
+            <div class="font-wrapper">
+                <h3>Saved Fonts</h3>
+                <ul id="font-list">
+                    <span id="add-font" class="hover-effect" onclick="addFont(this)"></span>
+                </ul>
+            </div>
+        <script src="index.js"></script>   
+    </body>
+</html>

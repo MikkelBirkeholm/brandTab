@@ -1,0 +1,213 @@
+h3 {
+    font-size: 1em; 
+    margin: 1em 0 0; 
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #e6e6e6;
+    border-radius: 1em;
+    box-shadow: 0 4px 7px rgb(182, 182, 182);
+    padding: 0;
+    margin: 0;
+    width: clamp(400px, 600px, 900px);
+}
+
+
+.hidden {
+    display: none;
+}
+
+.outer-wrapper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: #fafafa;
+    padding: 1em;
+    margin: 0;
+}
+
+#user-nav {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+    width: 100%;
+}
+
+#settings-icon {
+    display: inline;
+    margin-left: auto;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#settings-icon:hover {
+    opacity: 1;
+}
+
+#user-nav a {
+    color: rgb(143, 143, 143);
+    text-decoration: none;
+}
+
+.colorbox, #add-color, #add-font {
+    position: relative;
+    height: 2.5em;
+    width: 2.5em;
+    background-color: #f1f1f1;
+    border-radius: 0.5em;
+    border: 1px solid rgb(172, 172, 172);
+    z-index: 1;
+}
+
+.delete-btn {
+    position: relative;
+    height: 1em;
+    width: 1em;
+    z-index: 10;
+    cursor: not-allowed;
+    transition: all 250ms ease;
+    background-image: url('delete-icon.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-top: -0.3em;
+    margin-right: -0.2em;
+    float: right;
+    background-color: rgb(255, 255, 255);
+    border-radius: 100%;
+    animation: 100ms spawnAni 300ms forwards;
+    opacity: 0;
+}
+
+
+
+.copyBtn:hover {
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+
+
+/* ------------- ADD COLOR ------------- */
+#add-color, #add-font {
+    display: inline-block;
+    margin: 0;
+}
+
+#add-color::after, #add-font::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    content: '';
+    background-image: url('add-icon.svg');
+    background-size: 1em;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 2;
+    opacity: 0.5;
+    transition: all 280ms ease;
+    transform: scale(0.8);
+}
+
+#add-color:hover::after, #add-font:hover::after  {
+    transform: rotate(90deg) scale(1);
+    opacity: 1;
+}
+
+#add-color:active, #add-font:active {
+    transform: scale(0.87);
+}
+/* ADD COLOR --------- END */
+
+/* ----------- LIST ITEMS ------------- */
+
+.list-el {
+    display: inline;
+    flex-direction: column;
+    justify-items: center;
+}
+
+#color-list {
+    position: relative;
+    display: inline-flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+    margin: 0.5em 0.5em 0.5em 0;
+    padding: 0;
+    gap: 0.5em;
+}
+
+/* LIST ITEMS ---------- END */
+
+
+/* ------------- FONT LIST ------------- */
+#font-list {
+    display: inline-flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+    align-items: center;
+    margin: 0.5em 0.5em 0.5em 0;
+    padding: 0;
+    gap: 0.5em;
+}
+
+.saved-font {
+    background-color: rgb(241, 241, 241);
+    border-radius: 3px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 10em;
+    height: 2em;
+    border-radius: 0.5em;
+    border: 1px solid rgb(172, 172, 172);
+}
+
+.saved-font img {
+    opacity: 0.5;
+}
+
+.saved-font img:hover {
+    opacity: 1;
+}
+
+
+/* ------------- FONT LIST END END END ------------- */
+.hover-effect {
+    transition: all 250ms ease;
+    cursor: pointer;
+}
+
+.hover-effect:hover {
+    transform: scale(1.08);
+}
+
+/* ------------- CONTEXT MENU ------------- */
+
+.colorbox {
+    animation: spawnAni 200ms linear;
+}
+
+@keyframes spawnAni {
+    0% {
+        transform: scale(0.5) rotate(160deg);
+        opacity: 0.1;
+    }
+
+    80% {
+        transform: scale(1.1); 
+    }
+    
+    100% {
+        transform: scale(1) rotate(0);;
+        opacity: 1;
+    }
+}
