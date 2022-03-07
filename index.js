@@ -4,7 +4,36 @@ const colorList = document.getElementById('color-list')
 let colorBoxes = ''
 let savedColors = document.querySelectorAll('.colorbox')
 const addColorBtn = document.getElementById('add-color')
+const testBtn = document.getElementById('test-btn')
+const clearBtn = document.getElementById('clear-btn')
+const storage = chrome.storage.sync
 
+
+
+
+/* --- This is just some chrome storage testing :) ---- */
+
+function saveColor(id, value) {
+  this.id = id;
+  this.value = value;
+}
+
+// storage.set({color: '#fff'}, function() {
+// });
+
+testBtn.addEventListener('click', function(){
+  storage.get(['color'], function(result){
+    alert(result.color)
+  });
+  })
+
+clearBtn.addEventListener('click', function(){
+  storage.clear()
+})
+
+
+
+/* --- This is just some chrome storage testing end ---- */
 
 const fontTemplate = `
   <li class="saved-font hover-effect">
@@ -22,14 +51,14 @@ function liTemplate(bgColor) {
 }
 
 
-/* --- CONTEXT MENU ----  */
+/* --- CONTEXT MENU, don't mind this yet ----  */
 
 document.addEventListener("contextmenu", (e) => {
   e.preventDefault();
 });
 
 
- /* --- CONTEXT MENU END END END----  */
+ /* --- CONTEXT MENU END----  */
 
 
 addColorBtn.addEventListener("click", function() {
@@ -37,10 +66,13 @@ addColorBtn.addEventListener("click", function() {
   const eyeDropper = new EyeDropper()
 
   eyeDropper.open().then(result => {
-    colorValue = result.sRGBHex // resultElement.textContent = result.sRGBHex;
+    colorValue = result.sRGBHex
     colorList.insertAdjacentHTML('beforeend', liTemplate(colorValue));
+
     let currentColor = document.getElementsByClassName('colorbox')
     addDelete()
+    storage.set({})
+    
 
     for (let i = 0; i < currentColor.length; i++) {
       currentColor[i].id = 'idColor' + [i+1];
