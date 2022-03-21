@@ -9,12 +9,9 @@ h3 {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #e6e6e6;
-    border-radius: 1em;
-    box-shadow: 0 4px 7px rgb(182, 182, 182);
-    padding: 0;
-    margin: 0;
+    background-color: #fff;
     width: clamp(400px, 600px, 900px);
+    transition: all 350ms ease;
 }
 
 
@@ -22,11 +19,14 @@ body {
     display: none;
 }
 
+.note-wrapper {
+    display: none;
+}
+
 .outer-wrapper {
     position: relative;
     width: 100%;
     height: 300px;
-    background-color: #fafafa;
     padding: 1em;
     margin: 0;
 }
@@ -80,11 +80,17 @@ body {
     float: right;
     background-color: rgb(255, 255, 255);
     border-radius: 100%;
-    animation: 100ms spawnAni 300ms forwards;
     opacity: 0;
+    transition: all 300ms ease;
 }
 
+.list-el:hover .delete-btn {
+    opacity: 1;
+}
 
+.spawnAni {
+    animation: spawnAni 270ms forwards;
+}
 
 .copyBtn:hover {
     border: 1px solid #888;
@@ -96,6 +102,9 @@ body {
 #add-color, #add-font {
     display: inline-block;
     margin: 0;
+    padding: 0;
+    
+    
 }
 
 #add-color::after, #add-font::after {
@@ -131,6 +140,8 @@ body {
     display: inline;
     flex-direction: column;
     justify-items: center;
+    margin: 0;
+
 }
 
 #color-list {
@@ -138,9 +149,10 @@ body {
     display: inline-flex;
     flex-flow: row wrap;
     list-style-type: none;
-    margin: 0.5em 0.5em 0.5em 0;
     padding: 0;
-    gap: 0.5em;
+    margin: 0;
+    margin-top: 5px;
+    gap: 0.2em;
 }
 
 /* LIST ITEMS ---------- END */
@@ -154,29 +166,7 @@ body {
     align-items: center;
     margin: 0.5em 0.5em 0.5em 0;
     padding: 0;
-    gap: 0.5em;
-}
-
-.saved-font {
-    background-color: rgb(241, 241, 241);
-    border-radius: 3px;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 10em;
-    height: 2em;
-    border-radius: 0.5em;
-    border: 1px solid rgb(172, 172, 172);
-}
-
-.saved-font img {
-    opacity: 0.5;
-}
-
-.saved-font img:hover {
-    opacity: 1;
+    gap: 0.3em;
 }
 
 
@@ -192,9 +182,6 @@ body {
 
 /* ------------- CONTEXT MENU ------------- */
 
-.colorbox {
-    animation: spawnAni 200ms linear;
-}
 
 @keyframes spawnAni {
     0% {
@@ -207,7 +194,7 @@ body {
     }
     
     100% {
-        transform: scale(1) rotate(0);;
+        transform: scale(1) rotate(0);
         opacity: 1;
     }
 }
