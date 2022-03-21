@@ -57,7 +57,7 @@ saveInput.addEventListener("click", function() {
     alert('You need to write something')
     return
   } else {
-  myNotes.push(noteInput.value)
+  myNotes.unshift(noteInput.value)
   localStorage.setItem("myNotes", JSON.stringify(myNotes) )
   renderNotes()
   noteInput.value = ""

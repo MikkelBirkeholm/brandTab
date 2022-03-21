@@ -17,19 +17,29 @@ body {
 
 .hidden {
     display: none;
+    visibility: hidden;
 }
 
 .note-delete {
     cursor: pointer;
     position: relative;
     height: 2em;
-    width: 2em;
+    min-width: 2em;
     z-index: 10;
     background-image: url('note-delete-icon.svg');
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
+#saved-notes {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.5em;
+}
+
+#save-note {
+    display: none;
+}
 
 .note-box {
     display: flex;
@@ -39,9 +49,18 @@ body {
     gap: 0.5em;
     color: #534309;
     background-color: #ffe6bc;
-    padding: 0.2em 1em;
+    padding: 0.1em 1em;
     border-radius: 5px;
     margin-top: 0.5em;
+    flex: 0 0 45%;
+}
+
+#note-input {
+    border: none;
+    border-radius: 5px;
+    background-color: #ffe6bc;
+    padding: 0.4em;
+
 }
 
 .text-note {
