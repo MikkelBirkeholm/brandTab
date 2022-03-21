@@ -9,32 +9,6 @@ const clearBtn = document.getElementById('clear-btn')
 const storage = chrome.storage.sync
 
 
-
-
-/* --- This is just some chrome storage testing :) ---- */
-
-function saveColor(id, value) {
-  this.id = id;
-  this.value = value;
-}
-
-// storage.set({color: '#fff'}, function() {
-// });
-
-testBtn.addEventListener('click', function(){
-  storage.get(['color'], function(result){
-    alert(result.color)
-  });
-  })
-
-clearBtn.addEventListener('click', function(){
-  storage.clear()
-})
-
-
-
-/* --- This is just some chrome storage testing end ---- */
-
 const fontTemplate = `
   <li class="saved-font hover-effect">
     <span>${fontName}</span><img src="duplicate-icon.svg" alt="" width="25" class="copy-icon">
@@ -49,6 +23,30 @@ function liTemplate(bgColor) {
   </li>
 `
 }
+
+
+/* --- This is just some chrome storage testing :) ---- */
+
+function saveColor(id, value) {
+  this.id = id;
+  this.value = value;
+}
+
+// storage.set({color: '#fff'}, function() {
+// });
+
+testBtn.addEventListener('click', function() {
+  storage.set({"savedColors": saveColor(hund, blue)}, function(){
+  })
+})
+
+clearBtn.addEventListener('click', function(){
+storage.clear()
+})
+
+
+
+/* --- This is just some chrome storage testing end ---- */
 
 
 /* --- CONTEXT MENU, don't mind this yet ----  */
@@ -71,8 +69,6 @@ addColorBtn.addEventListener("click", function() {
 
     let currentColor = document.getElementsByClassName('colorbox')
     addDelete()
-    storage.set({})
-    
 
     for (let i = 0; i < currentColor.length; i++) {
       currentColor[i].id = 'idColor' + [i+1];
@@ -85,6 +81,7 @@ addColorBtn.addEventListener("click", function() {
     .catch(e => {
       alert('Something went wrong or the action was cancelled')
     })
+
 })
 
 
