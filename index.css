@@ -19,8 +19,37 @@ body {
     display: none;
 }
 
-.note-wrapper {
-    display: none;
+.note-delete {
+    cursor: pointer;
+    position: relative;
+    height: 2em;
+    width: 2em;
+    z-index: 10;
+    background-image: url('note-delete-icon.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+
+.note-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
+    color: #534309;
+    background-color: #ffe6bc;
+    padding: 0.2em 1em;
+    border-radius: 5px;
+    margin-top: 0.5em;
+}
+
+.text-note {
+    cursor: copy;
+}
+
+#note-wrapper {
+    margin-top: 1em;
 }
 
 .outer-wrapper {

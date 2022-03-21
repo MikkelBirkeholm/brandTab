@@ -1,7 +1,7 @@
 let listEl = document.querySelectorAll('.list-el')
 const colorList = document.getElementById('color-list')
 let colorBoxes = ''
-let savedColors = document.querySelectorAll('.colorbox')
+const savedColors = document.querySelectorAll('.colorbox')
 const addColorBtn = document.getElementById('add-color')
 let myColors = []
 let myNotes = []
@@ -13,10 +13,14 @@ let outerWrap = document.getElementById('outer-wrapper')
 let contentWrap = document.getElementById('content-wrapper')
 let noteWrapper = document.getElementById('note-wrapper')
 
-let savedNote = document.getElementById('saved-note')
-let noteInput = document.getElementById('note-input')
-let saveInput = document.getElementById('save-note')
+const savedNotes = document.getElementById('saved-notes')
 
+let saveInput = document.getElementById('save-note')
+let textNote = document.querySelectorAll('.text-note')
+let noteInput = document.getElementById('note-input')
+let noteForm = document.getElementById('note-form')
+
+let clearStorage = document.getElementById('clearStorage')
 
 
 notePadTemplate = `
@@ -33,16 +37,31 @@ colorPads = `
 `;
 
 
-
 if (colorsFromLocalStorage) {
   myColors = colorsFromLocalStorage
   renderColors()
 }
 
+if (notesFromLocalStorage) {
+  myNotes = notesFromLocalStorage
+  renderNotes()
+}
+
+noteForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+  }
+)
+
 saveInput.addEventListener("click", function() {
-  savedNote.innerText = noteInput.value
-  myNotes = savedNote.innerText
+  if (noteInput.value === "") {
+    alert('You need to write something')
+    return
+  } else {
+  myNotes.push(noteInput.value)
+  localStorage.setItem("myNotes", JSON.stringify(myNotes) )
+  renderNotes()
   noteInput.value = ""
+}
 })
 
 mainView.addEventListener("click", function() {
@@ -85,6 +104,22 @@ addColorBtn.addEventListener("click", function() {
   })
 })
 
+function renderNotes() {
+  notesFromLocalStorage = JSON.parse( localStorage.getItem("myNotes") );
+  myNotes = notesFromLocalStorage;
+  listOfNotes = "";
+  for (let i = 0; i < myNotes.length; i++) {
+    listOfNotes += `
+    <div class="note-box">
+    <p class="text-note">${myNotes[i]}</p>
+    <div class="note-delete"></div>
+    </div>
+  `
+  }
+  savedNotes.innerHTML = listOfNotes
+  noteCopy()
+  noteDelete()
+}
 
 
 function renderColors() {
@@ -105,6 +140,16 @@ function renderColors() {
   addDelete()
 }
 
+function noteCopy() {
+  let currentNote = document.getElementsByClassName('text-note')
+  for (let i = 0; i < currentNote.length; i++) {
+    currentNote[i].addEventListener("click", () => {
+          let textCopy = currentNote[i].innerText
+          navigator.clipboard.writeText(textCopy);
+         })
+    }
+}
+
 function addCopy() {
   let currentColor = document.getElementsByClassName('colorbox')
   for (let i = 0; i < currentColor.length; i++) {
@@ -115,6 +160,17 @@ function addCopy() {
          })
     }
 }
+
+function noteDelete() {
+  let noteDelete = document.getElementsByClassName('note-delete')
+  for (let i = noteDelete.length - 1; i >= 0; i--) {
+    noteDelete[i].addEventListener("click", function() {
+      this.parentNode.remove();
+      removeNote(i)
+      renderNotes()
+  })
+}}
+
 
 
 function addDelete() {
@@ -130,6 +186,11 @@ function addDelete() {
 function removeColor(e) {
     myColors.splice(e, 1);
     localStorage.setItem("myColors", JSON.stringify(myColors) )
+}
+
+function removeNote(e) {
+  myNotes.splice(e, 1);
+  localStorage.setItem("myNotes", JSON.stringify(myNotes) )
 }
 
 
