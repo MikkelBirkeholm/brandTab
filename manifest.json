@@ -6,7 +6,7 @@
         "storage"
       ],
     "action": {
-        "default_popup": "index.html",
+        "default_popup": "colors.html",
         "default_icon": "icon.png"
     }
 }
