@@ -22,6 +22,9 @@ let noteForm = document.getElementById('note-form')
 
 let clearStorage = document.getElementById('clearStorage')
 
+const linksBtn = document.getElementById('saved-links')
+
+
 
 notePadTemplate = `
 string text string text
@@ -64,7 +67,7 @@ saveInput.addEventListener("click", function() {
 }
 })
 
-mainView.addEventListener("click", function() {
+/* mainView.addEventListener("click", function() {
   noteWrapper.classList.add("hidden");
   contentWrap.classList.remove("hidden");
 })
@@ -72,7 +75,7 @@ mainView.addEventListener("click", function() {
 notePad.addEventListener("click", function() {
   contentWrap.classList.add("hidden");
   noteWrapper.classList.remove("hidden");
-})
+}) */
 
 /* --- CONTEXT MENU, don't mind this yet ----  */
 
@@ -81,6 +84,11 @@ document.addEventListener("contextmenu", (e) => {
 });
 
  /* --- CONTEXT MENU END----  */
+
+linksBtn.addEventListener("click", function(){
+  window.location.assign("/links.html")
+})
+
 
 
 addColorBtn.addEventListener("click", function() {
