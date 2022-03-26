@@ -63,7 +63,8 @@ function renderLinks() {
     for (let i = 0; i < myLinks.length; i++) {
       listOfLinks += `
       <div class="link-box">
-      <a href="${myLinks[i]}" target="_blank" class="link">${myLinks[i]}</a>
+      <img src="https://s2.googleusercontent.com/s2/favicons?domain=${myLinks[i]} class="favicon"><a href="${myLinks[i]}" target="_blank" class="link">
+      ${myLinks[i]}</a>
       <div class="link-delete"></div>
       </div>
     `
